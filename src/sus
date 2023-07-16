@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# A simple python script to retrieve the destination URL from a short URL.
+
+import requests
+
+short_url = input("Enter the short URL: ")
+
+try:
+    response = requests.head(short_url, allow_redirects=True)
+
+    if response.url:
+        print(f"Destination URL: {response.url}")
+    else:
+        print("Unable to find the destination URL.")
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
